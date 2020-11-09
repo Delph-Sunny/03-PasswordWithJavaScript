@@ -31,7 +31,8 @@ Click on this [link] or download the entire repository, unzip the files and doub
 
 ## Credits
 
-rilogy Education Services for the image
+Trilogy Education Services for the image
+Icon made by Freepik from [www.flaticon.com](https://www.flaticon.com/)
 
 ## License
 
