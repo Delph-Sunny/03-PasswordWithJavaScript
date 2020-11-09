@@ -26,7 +26,7 @@ Click on this [link] or download the entire repository, unzip the files and doub
 
 ## Images of a Password Generator  :mag_right:
 
-![index at 992](./assets/template/03-javascript-homework-demo.png)
+![index at 992](./assets/images/03-javascript-homework-demo.png)
 
 
 ## Credits
