@@ -1,30 +1,38 @@
-// Assignment Code
+// Global variables declaration
 var generateBtn = document.querySelector("#generate");
 var copyBtn = document.querySelector("#toCopy");
+var passwordText = document.querySelector("#password");
 
-// Prompt for a number from 8 to 128
+
+// Gray out copy button until a password is generated
+copyBtn.style.backgroundColor = "hsl(206, 17%, 28%)";
+
+
+// Function to prompt the password length
 function readNumber() {
-  let num;
+  var num;
   do {
     num = prompt("Enter the characters length of your password (8 to 128): ", 0);
-  } while (!isFinite(num) || !(num >= 8 && num <= 128));
+    num = Number(num);                                        // Change type to number 
+  } while (!(num >= 8 && num <= 128) || (num % 1 != 0) );  
   return num;  
 }
 
 
-// Prompt for character types
+// Function to prompt for character types
 function userChoice(val) {
-  let boolVal = confirm(`Do you want ${val}?`); 
+  var boolVal; 
+  boolVal = confirm(`Do you want ${val}?`); 
   return boolVal;
 }
 
 /******** Function to generate a password of x characters ********/
 function generatePassword() {
   var array4Password = "";  // Declare to store final password
-  var userLength; 
+  var pwdLength;
   var chars = "";
   const typeListText = ["lowercase", "uppercase", "number", "special"];
-  let booleanTypeList = [];
+  var booleanTypeList = [];
   // variables of string for each type
   let upperChar = String.fromCharCode(...Array(91).keys()).slice(65),//A-Z
       lowerChar = String.fromCharCode(...Array(123).keys()).slice(97),//a-z
@@ -32,9 +40,9 @@ function generatePassword() {
       specialChar = " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";
   
   // Call function to get user input
-  userLength =Number(readNumber());   // Change type to Number
+  pwdLength = readNumber(); 
   
-  // Get the character types user choices
+  // Get the character types user choices - Need at least one type
   do {
     alert("Please choose at least one of the following 4 character types.");
     for (let i = 0; i < 4; i++) {
@@ -49,29 +57,33 @@ function generatePassword() {
   if (booleanTypeList[3]) {chars = chars + specialChar;};
    
    // Add each random characters to create password
-  for (let i = 0; i < userLength; i++) {                   
+  for (let i = 0; i < pwdLength; i++) {                   
     var c = Math.floor(Math.random()*chars.length) + 1;
     array4Password += chars.charAt(c);
   }
+
+  // Un-Gray out copy button
+  copyBtn.style.backgroundColor = "hsl(360, 91%, 36%)";
+  
   return array4Password;
-}
+  }
 /*********** End a password generator function ***********/
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// Copy password into clipboard
+// Copy password into clipboard only when there is a password 
 function copyClipboard() {
-  var copyText = document.querySelector("#password");
-  copyText.select();
-  document.execCommand("copy");
+  if (passwordText.value != "") {
+    passwordText.select();
+    document.execCommand("copy");
+  }
 }
 
 // Add event listener to copy button
