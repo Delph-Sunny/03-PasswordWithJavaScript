@@ -1,5 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+var copyBtn = document.querySelector("#toCopy");
 
 // Prompt for a number from 8 to 128
 function readNumber() {
@@ -13,7 +14,7 @@ function readNumber() {
 
 // Prompt for character types
 function userChoice(val) {
-  let boolVal = confirm("Do you want " + val +"?"); 
+  let boolVal = confirm(`Do you want ${val}?`); 
   return boolVal;
 }
 
@@ -36,7 +37,7 @@ function generatePassword() {
   // Get the character types user choices
   do {
     alert("Please choose at least one of the following 4 character types.");
-    for (var i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
       booleanTypeList[i] = userChoice(typeListText[i]);
     } 
   } while (!booleanTypeList[0] && !booleanTypeList[1] && !booleanTypeList[2] && !booleanTypeList[3]);
@@ -48,7 +49,7 @@ function generatePassword() {
   if (booleanTypeList[3]) {chars = chars + specialChar;};
    
    // Add each random characters to create password
-  for (i = 0; i < userLength; i++) {                   
+  for (let i = 0; i < userLength; i++) {                   
     var c = Math.floor(Math.random()*chars.length) + 1;
     array4Password += chars.charAt(c);
   }
@@ -66,12 +67,12 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// Copy password into clipboard //TO FIX
-function myFunction() {
+// Copy password into clipboard
+function copyClipboard() {
   var copyText = document.querySelector("#password");
   copyText.select();
   document.execCommand("copy");
 }
 
 // Add event listener to copy button
-document.querySelector("#toCopy").addEventListener("click", myFunction);
+copyBtn.addEventListener("click", copyClipboard);
