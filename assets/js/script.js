@@ -41,13 +41,18 @@ function generatePassword() {
     } 
   } while (!booleanTypeList[0] && !booleanTypeList[1] && !booleanTypeList[2] && !booleanTypeList[3]);
 
-
-
-
-
-
-
-
+  // Create a list of combined chosen type lists
+  if (booleanTypeList[0]) {chars = lowerChar;};
+  if (booleanTypeList[1]) {chars = chars + upperChar;};
+  if (booleanTypeList[2]) {chars = chars + numberList;};
+  if (booleanTypeList[3]) {chars = chars + specialChar;};
+   
+   // Add each random characters to create password
+  for (i = 0; i < userLength; i++) {                   
+    var c = Math.floor(Math.random()*chars.length) + 1;
+    array4Password += chars.charAt(c);
+  }
+  return array4Password;
 }
 /*********** End a password generator function ***********/
 
