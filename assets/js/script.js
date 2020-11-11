@@ -5,7 +5,7 @@ var passwordText = document.querySelector("#password");
 
 
 // Gray out copy button until a password is generated
-copyBtn.style.backgroundColor = "hsl(206, 17%, 28%)";
+copyBtn.style.backgroundColor = "#c0c7cf";
 
 
 // Function to prompt the password length
