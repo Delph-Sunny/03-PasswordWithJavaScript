@@ -18,6 +18,28 @@ function userChoice(val) {
 }
 
 /******** Function to generate a password of x characters ********/
+function generatePassword() {
+  var array4Password = "";  // Declare to store final password
+  var userLength; 
+  var chars = "";
+  const typeListText = ["lowercase", "uppercase", "number", "special"];
+  let booleanTypeList = [];
+  // variables of string for each type
+  let upperChar = String.fromCharCode(...Array(91).keys()).slice(65),//A-Z
+      lowerChar = String.fromCharCode(...Array(123).keys()).slice(97),//a-z
+      numberList = String.fromCharCode(...Array(58).keys()).slice(48),//0-9
+      specialChar = " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";
+  
+  // Call function to get user input
+  userLength =Number(readNumber());   // Change type to Number
+  
+  // Get the character types user choices
+  do {
+    alert("Please choose at least one of the following 4 character types.");
+    for (var i = 0; i < 4; i++) {
+      booleanTypeList[i] = userChoice(typeListText[i]);
+    } 
+  } while (!booleanTypeList[0] && !booleanTypeList[1] && !booleanTypeList[2] && !booleanTypeList[3]);
 
 
 
@@ -26,8 +48,7 @@ function userChoice(val) {
 
 
 
-
-
+}
 /*********** End a password generator function ***********/
 
 // Write password to the #password input

@@ -14,7 +14,13 @@ body,
 
 body {
   font-family: sans-serif;
-  background-color: #f9fbfd;
+  /*background-color: #f9fbfd; */
+  background-image: url('../images/Background2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-color: hsl(206, 17%, 28%);
 }
 
 .wrapper {
@@ -27,7 +33,7 @@ header {
   text-align: center;
   padding: 20px;
   padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+  color: hsl(360, 91%, 36%);
 }
 
 .card {
