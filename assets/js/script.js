@@ -8,7 +8,7 @@ var passwordText = document.querySelector("#password");
 copyBtn.style.backgroundColor = "#c0c7cf";
 
 
-// Function to prompt the password length
+/******** Function to prompt the password length ********/
 function readNumber() {
   var num;
   do {
@@ -19,7 +19,7 @@ function readNumber() {
 }
 
 
-// Function to prompt for character types
+/******** Function to prompt for character types ********/
 function userChoice(val) {
   var boolVal; 
   boolVal = confirm(`Do you want ${val}?`); 
@@ -58,7 +58,7 @@ function generatePassword() {
    
    // Add each random characters to create password
   for (let i = 0; i < pwdLength; i++) {                   
-    var c = Math.floor(Math.random()*chars.length) + 1;
+    let c = Math.floor(Math.random()*chars.length) + 1;
     array4Password += chars.charAt(c);
   }
 
@@ -67,24 +67,24 @@ function generatePassword() {
   
   return array4Password;
   }
-/*********** End a password generator function ***********/
+/******** End a password generator function ********/
 
-// Write password to the #password input
+/******** Write password to the #password input ********/
 function writePassword() {
   var password = generatePassword();
   passwordText.value = password;
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-// Copy password into clipboard only when there is a password 
+/******** Copy password into clipboard only when there is a password ********/
 function copyClipboard() {
   if (passwordText.value != "") {
     passwordText.select();
     document.execCommand("copy");
   }
 }
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 // Add event listener to copy button
 copyBtn.addEventListener("click", copyClipboard);
