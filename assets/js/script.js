@@ -3,7 +3,6 @@ var generateBtn = document.querySelector("#generate");
 var copyBtn = document.querySelector("#toCopy");
 var passwordText = document.querySelector("#password");
 
-
 // Gray out copy button until a password is generated
 copyBtn.style.backgroundColor = "#c0c7cf";
 
@@ -13,7 +12,11 @@ function readNumber() {
   var num;
   do {
     num = prompt("Enter the characters length of your password (8 to 128): ", 0);
-    num = Number(num);                                        // Change type to number 
+    if (num === null) {
+      return;                                                    // Exit the loop at cancel button
+    } else {
+      num = Number(num);                                         // Change type to number 
+      }                                      
   } while (!(num >= 8 && num <= 128) || (num % 1 != 0) );  
   return num;  
 }
@@ -25,6 +28,7 @@ function userChoice(val) {
   boolVal = confirm(`Do you want ${val}?`); 
   return boolVal;
 }
+
 
 /******** Function to generate a password of x characters ********/
 function generatePassword() {
@@ -41,41 +45,46 @@ function generatePassword() {
   
   // Call function to get user input
   pwdLength = readNumber(); 
+    
+  if (pwdLength !== undefined){
   
-  // Get the character types user choices - Need at least one type
-  do {
-    alert("Please choose at least one of the following 4 character types.");
-    for (let i = 0; i < 4; i++) {
-      booleanTypeList[i] = userChoice(typeListText[i]);
-    } 
-  } while (!booleanTypeList[0] && !booleanTypeList[1] && !booleanTypeList[2] && !booleanTypeList[3]);
+    // Get the character types user choices - Need at least one type
+    do {
+      alert("Please choose at least one of the following 4 character types.");
+      for (let i = 0; i < 4; i++) {
+        booleanTypeList[i] = userChoice(typeListText[i]);
+      } 
+    } while (!booleanTypeList[0] && !booleanTypeList[1] && !booleanTypeList[2] && !booleanTypeList[3]);
 
-  // Create a list of combined chosen type lists
-  if (booleanTypeList[0]) {chars = lowerChar;};
-  if (booleanTypeList[1]) {chars = chars + upperChar;};
-  if (booleanTypeList[2]) {chars = chars + numberList;};
-  if (booleanTypeList[3]) {chars = chars + specialChar;};
+    // Create a list of combined chosen type lists
+    if (booleanTypeList[0]) {chars = lowerChar;};
+    if (booleanTypeList[1]) {chars = chars + upperChar;};
+    if (booleanTypeList[2]) {chars = chars + numberList;};
+    if (booleanTypeList[3]) {chars = chars + specialChar;};
    
-   // Add each random characters to create password
-  for (let i = 0; i < pwdLength; i++) {                   
-    let c = Math.floor(Math.random()*chars.length) + 1;
-    array4Password += chars.charAt(c);
-  }
+    // Add each random characters to create password
+    for (let i = 0; i < pwdLength; i++) {                   
+      let c = Math.floor(Math.random()*chars.length) + 1;
+      array4Password += chars.charAt(c);
+    }
 
-  // Un-Gray out copy button
-  copyBtn.style.backgroundColor = "hsl(360, 91%, 36%)";
+    // Un-Gray out copy button
+    copyBtn.style.backgroundColor = "hsl(360, 91%, 36%)";
   
-  return array4Password;
-  }
+    return array4Password;
+  } 
+}
 /******** End a password generator function ********/
 
 /******** Write password to the #password input ********/
 function writePassword() {
   var password = generatePassword();
-  passwordText.value = password;
+  if (password !== undefined) {
+    passwordText.value = password;
+  }
 }
 
-/******** Copy password into clipboard only when there is a password ********/
+/******** Copy password into clipboard if there is a password ********/
 function copyClipboard() {
   if (passwordText.value != "") {
     passwordText.select();
