@@ -45,8 +45,8 @@ function generatePassword() {
   
   // Call function to get user input
   pwdLength = readNumber(); 
-    
-  if (pwdLength !== undefined){
+  
+  if (typeof pwdLength !== 'undefined'){
   
     // Get the character types user choices - Need at least one type
     do {
@@ -79,7 +79,7 @@ function generatePassword() {
 /******** Write password to the #password input ********/
 function writePassword() {
   var password = generatePassword();
-  if (password !== undefined) {
+  if (typeof password !== 'undefined') {
     passwordText.value = password;
   }
 }
