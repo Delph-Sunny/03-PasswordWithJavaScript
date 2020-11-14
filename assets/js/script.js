@@ -1,4 +1,4 @@
-// Global variables declaration
+// Global variable declarations
 var generateBtn = document.querySelector("#generate");
 var copyBtn = document.querySelector("#toCopy");
 var passwordText = document.querySelector("#password");
@@ -41,7 +41,7 @@ function generatePassword() {
   let upperChar = String.fromCharCode(...Array(91).keys()).slice(65),//A-Z
       lowerChar = String.fromCharCode(...Array(123).keys()).slice(97),//a-z
       numberList = String.fromCharCode(...Array(58).keys()).slice(48),//0-9
-      specialChar = " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";
+      specialChar = " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";  // Easier to escape some characters this way
   
   // Call function to get user input
   pwdLength = readNumber(); 
@@ -64,8 +64,7 @@ function generatePassword() {
    
     // Add each random characters to create password
     for (let i = 0; i < pwdLength; i++) {                   
-      let c = Math.floor(Math.random()*chars.length) + 1;
-      array4Password += chars.charAt(c);
+      array4Password += chars.charAt(Math.floor(Math.random()*chars.length));
     }
 
     // Un-Gray out copy button
