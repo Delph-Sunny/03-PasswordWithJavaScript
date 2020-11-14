@@ -19,7 +19,7 @@ Finally, another button allows the user to copy the password to clipboard.
 
 ## Installation
 
-Click on this [link] or download the entire repository, unzip the files and double-click on `index.html` to see the page in an internet browser. Click on the button to generate a new password.
+Click on this [link] or download the entire repository, unzip the files and double-click on `index.html` to see the page in an internet browser. Click on the button to generate a new password. Answer each prompt to get your customized password.
 
 
 ## Images of a Password Generator  :mag_right:
